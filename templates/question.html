@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<a><big><big>{{ question.title }} Какое определение дали на паре?</big></big></a>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-1 mx-0 p-0">
+            <div class="row justify-content-center">
+                <img src="{% static 'img/507-64x64.jpg' %}" width="64" height="64"
+                     class=" img-thumbnail">
+                <a href="#">Автор</a>
+            </div>
+
+
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-default p-1" aria-label="Left Align">
+                    <span class="oi oi-chevron-top" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-default p-1" aria-label="Left Align">
+                    <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="row justify-content-center">
+                <h5>5</h5>
+            </div>
+        </div>
+
+        <div class="col-10">
+            <p class="card-text">Определе́ние — второстепенный член предложения,
+                обозначающий признак, качество, свойство предмета. Обычно выражено
+                прилагательным или причастием.
+            </p>
+            Тэги: {%for tag in question.tags%} <a href="{% url 'tag' tag_name=tag%}"> {{tag}} </a> {%endfor%}
+            <small><a class="text-secondary d-flex justify-content-end">01.04.2020</a></small>
+        </div>
+    </div>
+</div>
+
+<h5>Ответы(3)</h5>
+
+{% for answer in answers %}
+{% include 'inc/answer.html' %}
+{% endfor %}
+
+{% include 'inc/pagin.html' %}
+
+<div class="form-group">
+    <br><h5>Ваш ответ</h5>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+              placeholder="Ваш ответ"></textarea>
+    <button type="button" class="btn btn-primary m-2">Ответить</button>
+</div>
+
+{% endblock content %}
