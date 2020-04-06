@@ -23,7 +23,7 @@ def paginate(objects_list, request, count_obj):
 
 
 questions = {
-    i: {'id': i, 'title': f'question # {i}', 'tags': ["MGTU", "IU"]}
+    i: {'id': i, 'title': f'# {i}', 'tags': ["MGTU", "IU"]}
     for i in range(1, 20)
 }
 
@@ -74,9 +74,11 @@ def hot(request):
 
 def question(request, qid):
     quest = questions.get(qid)
+    answers_page, page = paginate(question_list, request, 3)
     return render(request, 'question.html', {
         'question': quest,
-        'answers': answers.values(),
+        'answers':answers_page,
+        'page': page,
     })
 
 
